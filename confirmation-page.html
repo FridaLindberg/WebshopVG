@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Order Confirmation</title>
+  </head>
+
+  <body class="bg-light">
+    <div style="max-width: 600px" class="mx-auto bg-white">
+      <div style="height: 60px" class="jumbotron w-100 bg-homepage"></div>
+      <div class="p-3">
+        <h1 class="text-center">Your Order</h1>
+        <div class="container">
+          <h5 class="fw-bold">Order Confirmation</h5>
+          <div class="row">
+            <div id="product-name" class="col-9">Product Name</div>
+            <div id="price" class="col-3">Price</div>
+          </div>
+          <div class="row">
+            <div class="col-9">Shipping + Handling</div>
+            <div class="col-3">$4.95</div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="fw-bold col-9">TOTAL</div>
+            <div id="total-price" class="fw-bold col-3">Price</div>
+          </div>
+          <hr />
+          <div class="border rounded row bg-light">
+            <img id="image" class="p-3 w-50 mx-auto" alt="Product" src="_" />
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="fw-bold">Delivery Address</div>
+              <div id="address"></div>
+              <div id="zip-code"></div>
+              <div id="city"></div>
+            </div>
+            <div class="col-6">
+              <div class="fw-bold">Costumer Details</div>
+              <div id="name"></div>
+              <div id="e-mail"></div>
+              <div id="phone"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="height: 200px"
+        class="d-flex align-items-center jumbotron w-100 bg-homepage text-center"
+      >
+        <div class="w-100">
+          <h1 class="text-white">Thank you for your order!</h1>
+          <a
+            href="index.html"
+            class="text-white p-3 mx-auto btn bg-success margin-btn"
+            >Order Again</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+      const image = document.getElementById("image");
+      const productName = document.getElementById("product-name");
+      const price = document.getElementById("price");
+      const shippingCost = 4.95;
+      const totalPrice = document.getElementById("total-price");
+
+      const name = document.getElementById("name");
+      const email = document.getElementById("e-mail");
+      const phone = document.getElementById("phone");
+      const address = document.getElementById("address");
+      const zipCode = document.getElementById("zip-code");
+      const city = document.getElementById("city");
+
+      totalPrice.textContent =
+        "$" +
+        (parseFloat(localStorage.getItem("priceData")) + shippingCost).toFixed(
+          2
+        );
+      price.textContent = "$" + localStorage.getItem("priceData");
+      productName.textContent = localStorage.getItem("nameData");
+      image.src = localStorage.getItem("imgData");
+
+      address.textContent = localStorage.getItem("address");
+      zipCode.textContent = localStorage.getItem("zip-code");
+      city.textContent = localStorage.getItem("city");
+
+      name.textContent = localStorage.getItem("name");
+      email.textContent = localStorage.getItem("e-mail");
+      phone.textContent = localStorage.getItem("phone");
+    </script>
+  </body>
+</html>

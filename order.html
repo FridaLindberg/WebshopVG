@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Order-page</title>
+  </head>
+
+  <body id="order-body">
+    <div id="order-css" class="container">
+      <div class="window">
+        <div class="order-info">
+          <div class="order-info-content">
+            <h2>Order Summary</h2>
+
+            <div class="line"></div>
+
+            <table class="order-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <img
+                      id="product-img"
+                      src="_"
+                      alt="Product Image"
+                      class="full-width"
+                    />
+                  </td>
+                  <td>
+                    <br />
+                    <span id="product-name" class="thin"></span>
+                    <br />
+                    <div id="product-info"></div>
+
+                    <br />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div id="product-price" class="price"></div>
+                  </td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="line"></div>
+
+            <div class="total">
+              <div style="float: left">
+                <div class="thin dense">Delivery</div>
+                TOTAL
+              </div>
+              <div style="float: right; text-align: right">
+                <div class="thin dense">$4.95</div>
+
+                <div id="total-price"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="credit-info">
+          <div class="credit-info-content">
+            Name
+            <input id="name" class="input-field" />
+            <div id="error-name" class="display-none color-red">
+              Name is required to be between 2 and 50 characters
+            </div>
+            Email
+            <input id="e-mail" class="input-field" />
+            <div id="error-e-mail" class="display-none color-red">
+              Invalid e-mailaddress
+            </div>
+            Phone
+            <input id="phone" class="input-field" />
+            <div id="error-phone" class="display-none color-red">
+              Phone number is required to follow format +46701234567
+            </div>
+            Street address
+            <input id="address" class="input-field" />
+            <div id="error-address" class="display-none color-red">
+              Invalid address
+            </div>
+
+            <table class="half-input-table">
+              <tr>
+                <td>
+                  Zip-code
+                  <input id="zip-code" class="input-field" />
+                </td>
+                <td>
+                  City
+                  <input id="city" class="input-field" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div id="error-zip-code" class="display-none color-red">
+                    Zip Code required to follow format 123 45
+                  </div>
+                </td>
+                <td>
+                  <div id="error-city" class="display-none color-red">
+                    Invalid City
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <button id="submit" class="pay-btn">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+      const image = document.getElementById("product-img");
+      const name = document.getElementById("product-name");
+      const price = document.getElementById("product-price");
+      const totalPrice = document.getElementById("total-price");
+
+      const shippingCost = 4.95;
+
+      name.textContent = localStorage.getItem("nameData");
+      image.src = localStorage.getItem("imgData");
+      price.textContent = "$" + localStorage.getItem("priceData");
+      totalPrice.textContent =
+        "$" +
+        (parseFloat(localStorage.getItem("priceData")) + shippingCost).toFixed(
+          2
+        );
+    </script>
+  </body>
+</html>
