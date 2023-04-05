@@ -22,6 +22,7 @@ function loadJSON() {
 }
 
 function buildProduktCard(json) {
+  let price = json.price.toFixed(2);
   document.getElementById("output").innerHTML += `
     <div class="col-md-3 mb-5">
     <div class="card h-100">
@@ -47,7 +48,7 @@ function buildProduktCard(json) {
             
              <br>
              <!-- Product price-->
-             <div class="text-center">$${json.price}</div> 
+             <div class="text-center">$${price}</div> 
              
             <div class="text-center"><a id="add-btn${json.id}"class="btn btn-outline-dark mt-auto btn-homepage" onclick="addToCart(${json.id})">Add to cart</a></div>
         </div>

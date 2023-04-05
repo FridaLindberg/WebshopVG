@@ -96,7 +96,7 @@ function fillOrderPage() {
             const json = JSON.parse(xhr.response);
             console.log(json); // JSON-objekt
 
-            let price = json.price*amount;
+            let price = (json.price*amount).toFixed(2);
   
                     document.getElementById("order-table").innerHTML += `<tr>
                     <td>
