@@ -24,12 +24,11 @@
         <h1 class="text-center">Your Order</h1>
         <div class="container">
           <h5 class="fw-bold">Order Confirmation</h5>
-          <div class="row">
-            <div id="product-name" class="col-9">Product Name</div>
-            <div id="price" class="col-3">Price</div>
+          <div id="products-confirmation" class="row">
+            
           </div>
           <div class="row">
-            <div class="col-9">Shipping + Handling</div>
+            <div class="col-9">Shipping</div>
             <div class="col-3">$4.95</div>
           </div>
           <hr />
@@ -38,8 +37,8 @@
             <div id="total-price" class="fw-bold col-3">Price</div>
           </div>
           <hr />
-          <div class="border rounded row bg-light">
-            <img id="image" class="p-3 w-50 mx-auto" alt="Product" src="_" />
+          <div id="confirmation-images" class="border rounded row bg-light">
+            
           </div>
           <div class="row">
             <div class="col-6">
@@ -49,7 +48,7 @@
               <div id="city"></div>
             </div>
             <div class="col-6">
-              <div class="fw-bold">Costumer Details</div>
+              <div class="fw-bold">Customer Details</div>
               <div id="name"></div>
               <div id="e-mail"></div>
               <div id="phone"></div>
@@ -63,46 +62,11 @@
       >
         <div class="w-100">
           <h1 class="text-white">Thank you for your order!</h1>
-          <a
-            href="index.html"
-            class="text-white p-3 mx-auto btn bg-success margin-btn"
-            >Order Again</a
-          >
+          <button id="shop-again" class="text-white p-3 mx-auto btn bg-success margin-btn">Shop again</button>
         </div>
       </div>
     </div>
 
-    <script src="scripts.js"></script>
-    <script>
-      const image = document.getElementById("image");
-      const productName = document.getElementById("product-name");
-      const price = document.getElementById("price");
-      const shippingCost = 4.95;
-      const totalPrice = document.getElementById("total-price");
-
-      const name = document.getElementById("name");
-      const email = document.getElementById("e-mail");
-      const phone = document.getElementById("phone");
-      const address = document.getElementById("address");
-      const zipCode = document.getElementById("zip-code");
-      const city = document.getElementById("city");
-
-      totalPrice.textContent =
-        "$" +
-        (parseFloat(localStorage.getItem("priceData")) + shippingCost).toFixed(
-          2
-        );
-      price.textContent = "$" + localStorage.getItem("priceData");
-      productName.textContent = localStorage.getItem("nameData");
-      image.src = localStorage.getItem("imgData");
-
-      address.textContent = localStorage.getItem("address");
-      zipCode.textContent = localStorage.getItem("zip-code");
-      city.textContent = localStorage.getItem("city");
-
-      name.textContent = localStorage.getItem("name");
-      email.textContent = localStorage.getItem("e-mail");
-      phone.textContent = localStorage.getItem("phone");
-    </script>
+    <script src="confirmation.js"></script>
   </body>
 </html>

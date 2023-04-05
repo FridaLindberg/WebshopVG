@@ -1,3 +1,10 @@
+loadJSON();
+
+if(localStorage.getItem("cart-count")==null){
+    localStorage.setItem("cart-count", 0);
+}
+document.getElementById("cart-count").textContent = localStorage.getItem("cart-count");
+
 function loadJSON() {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "https://fakestoreapi.com/products");
@@ -9,22 +16,9 @@ function loadJSON() {
       json.forEach((element) => {
         buildProduktCard(element);
       });
+      showAddedProduct();
     }
   };
-}
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
 }
 
 function buildProduktCard(json) {
@@ -55,14 +49,25 @@ function buildProduktCard(json) {
              <!-- Product price-->
              <div class="text-center">$${json.price}</div> 
              
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto btn-homepage" onclick="orderPage(${json.id})">Buy Product</a></div>
+            <div class="text-center"><a id="add-btn${json.id}"class="btn btn-outline-dark mt-auto btn-homepage" onclick="addToCart(${json.id})">Add to cart</a></div>
         </div>
     </div>
 </div>
 `;
+
 }
 
-// Jump to confirmation page
+function showAddedProduct() {
+  let cart = new Map(JSON.parse(localStorage.getItem("cart")));
+
+  cart.forEach((amount, id) => {
+    document.getElementById("add-btn"+id).textContent = "Added";
+    document.getElementById("add-btn" + id).style.pointerEvents = "none";
+    document.getElementById("add-btn" + id).style.backgroundColor = "darkgreen"; 
+  });
+}
+
+// Jump to order page
 function orderPage(id) {
   const xhr = new XMLHttpRequest();
 
@@ -95,81 +100,24 @@ function orderPage(id) {
   }, 500);
 }
 
-document.getElementById("submit").addEventListener("click", save);
 
-document.getElementById("order-css").addEventListener("input", validate);
 
-function validate() {
-  if (
-    document.getElementById("name").value.length < 2 ||
-    document.getElementById("name").value.length > 50
-  ) {
-    document.getElementById("error-name").style.display = "block";
-    return false;
-  } else {
-    document.getElementById("error-name").style.display = "none";
-  }
 
-  const mailPattern = /@/;
-
-  if (
-    !mailPattern.test(document.getElementById("e-mail").value) ||
-    document.getElementById("e-mail").value.length > 50
-  ) {
-    document.getElementById("error-e-mail").style.display = "block";
-    return false;
-  } else {
-    document.getElementById("error-e-mail").style.display = "none";
-  }
-
-  const pattern = /^([+]46)\s*(7[0236])\s*(\d{4})\s*(\d{3})$/;
-
-  if (!pattern.test(document.getElementById("phone").value)) {
-    document.getElementById("error-phone").style.display = "block";
-    return false;
-  } else {
-    document.getElementById("error-phone").style.display = "none";
-  }
-
-  if (document.getElementById("address").value.length > 50) {
-    document.getElementById("error-address").style.display = "block";
-    return false;
-  } else {
-    document.getElementById("error-address").style.display = "none";
-  }
-
-  const zipPattern = /^\d{3}\s\d{2}$/;
-
-  if (!zipPattern.test(document.getElementById("zip-code").value)) {
-    document.getElementById("error-zip-code").style.display = "block";
-    return false;
-  } else {
-    document.getElementById("error-zip-code").style.display = "none";
-  }
-
-  if (document.getElementById("city").value.length > 50) {
-    document.getElementById("error-city").style.display = "block";
-    return false;
-  } else {
-    document.getElementById("error-city").style.display = "none";
-  }
-
-  console.log("rätt");
-
-  return true;
+if(localStorage.getItem("cart")==null){
+  var cartContent = new Map();  
+}
+else {
+  cartContent = new Map(JSON.parse(localStorage.getItem("cart")));
 }
 
-function save() {
-  if (validate()) {
-    localStorage.setItem("name", document.getElementById("name").value);
-    localStorage.setItem("e-mail", document.getElementById("e-mail").value);
-    localStorage.setItem("phone", document.getElementById("phone").value);
-    localStorage.setItem("address", document.getElementById("address").value);
-    localStorage.setItem("zip-code", document.getElementById("zip-code").value);
-    localStorage.setItem("city", document.getElementById("city").value);
-    console.log("here");
-    setTimeout(() => {
-      window.location.href = "confirmation-page.html";
-    }, 500);
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
