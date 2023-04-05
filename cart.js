@@ -108,7 +108,7 @@ function fillCart() {
           totalPrice += price;
           localStorage.setItem("total price", totalPrice);
           document.getElementById("total-price").textContent =
-            "$" + (totalPrice + 4.95).toFixed(2);
+            "$" + (totalPrice + 4.95);
         }
       };
     });
