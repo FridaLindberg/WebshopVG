@@ -76,7 +76,8 @@ function fillCart() {
           const json = JSON.parse(xhr.response);
           console.log(json); // JSON-objekt
   
-          let price = (json.price*amount).toFixed(2);
+          let price = json.price*amount;
+          let showPrice = price.toFixed(2);
   
           document.getElementById("cart-table").innerHTML += `<tr id="cart-product${id}">
                       <td>
@@ -100,7 +101,7 @@ function fillCart() {
                       </td>
                       <td>
                         <br />
-                        <div id="product-price${id}" class="price">$${price}</div>
+                        <div id="product-price${id}" class="price">$${showPrice}</div>
                         <br />
                       </td>                   
                     </tr>
@@ -108,7 +109,7 @@ function fillCart() {
           totalPrice += price;
           localStorage.setItem("total price", totalPrice);
           document.getElementById("total-price").textContent =
-            "$" + (totalPrice + 4.95);
+            "$" + (totalPrice + 4.95).toFixed(2);
         }
       };
     });
