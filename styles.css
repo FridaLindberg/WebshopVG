@@ -11800,7 +11800,7 @@ fieldset:disabled .btn {
   float: right;
   margin-right: 0px;
   height: auto;
-  width: 400px;
+  width: 350px;
   background: #fff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -11812,7 +11812,7 @@ fieldset:disabled .btn {
 }
 #order-css .order-info {
   height: 100%;
-  width: 400px;
+  width: 100%;
   padding-left: 25px;
   padding-right: 25px;
   box-sizing: border-box;
